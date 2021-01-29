@@ -8,17 +8,20 @@ A web UI for monitoring [Krane](https://www.krane.sh/) deployments
 
 You can run the Krane UI and point it to any Krane instance using the below command
 
+Official Docker Image: https://hub.docker.com/repository/docker/biensupernice/krane-ui
+
 ```
 docker run -d --name krane-ui \
     -e KRANE_ENDPOINT=http://example.com \
     -e KRANE_TOKEN=changeme \
-    -p 3000:3000 \
-    biensupernice/krane-ui
+    -p 3000:3000 biensupernice/krane-ui
 ```
 
 ## Deploying
 
-You can deploy the Krane UI using Krane since its packaged up into a docker image. An example of the [deployment configuration](https://www.krane.sh/#/docs/deployment) can be seen below
+You can deploy the Krane UI using Krane since its packaged up into a docker image.
+
+An example [deployment configuration](https://www.krane.sh/#/docs/deployment) can be seen below
 
 `deployment.json`
 
