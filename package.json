@@ -1,15 +1,29 @@
 {
   "name": "ui",
-  "version": "0.1.0",
-  "private": true,
+  "description": "The Krane UI",
+  "version": "1.0.0",
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
+    "@krane/common": "^0.5.0",
+    "clsx": "^1.1.1",
     "next": "10.0.5",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "react-tippy": "^1.4.0",
+    "swr": "^0.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.21",
+    "@types/react": "^17.0.0",
+    "typescript": "^4.1.3",
+    "tailwindcss": "^2.0.2",
+    "autoprefixer": "^10.2.3",
+    "postcss": "^8.2.4",
+    "postcss-preset-env": "^6.7.0"
   }
 }
