@@ -1,4 +1,4 @@
-![UI-Banner](images/banner.png)
+![UI-Banner](images/ui-banner.png)
 
 A web UI for monitoring [Krane](https://www.krane.sh/) deployments
 
