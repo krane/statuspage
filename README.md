@@ -40,6 +40,8 @@ An example [deployment configuration](https://www.krane.sh/#/docs/deployment) ca
 
 ## Contributing
 
-The Krane UI is written in Typescript using [next.js](https://nextjs.org/). The [`@krane/common`](https://github.com/krane/common) library is used to interact with the Krane API.
+The Krane UI is written in Typescript using [next.js](https://nextjs.org/).
+
+The [`@krane/common`](https://github.com/krane/common) library is used to interface with the Krane API.
 
 This project is an open-source initiative, contributions and enhancement proposals are welcomed and appreciated.
