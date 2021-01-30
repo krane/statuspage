@@ -1,21 +1,41 @@
-import { useState } from "react";
 import Head from "next/head";
-import useSWR from "swr";
-
-import { Deployment } from "@krane/common";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { KraneClient, Deployment } from "@krane/common";
 
 import Toggle from "../components/global/Toggle";
 import Alert from "../components/global/Alert";
 import DeploymentsList from "../components/DeploymentStatusList";
 
-export default function IndexPage() {
-  const { data, error } = useSWR("/api/deployments", { refreshInterval: 30 });
+const endpoint = process.env.KRANE_ENDPOINT;
+const token = process.env.KRANE_TOKEN;
 
-  const deployments: Deployment[] = data ?? [];
+export async function getServerSideProps() {
+  try {
+    const client = new KraneClient(endpoint, token);
+    const deployments = await client.getDeployments();
+    return { props: { deployments } };
+  } catch (e) {
+    return { props: { deployments: [], error: e } };
+  }
+}
+
+type Props = {
+  deployments: Deployment[];
+  error: Error;
+};
+
+export default function IndexPage({ deployments, error }: Props) {
   const [showInternalDeployments, setShowInternalDeployments] = useState(false);
-
   const internalDeployments = deployments.filter((d) => d.config.internal);
   const nonInternalDeployments = deployments.filter((d) => !d.config.internal);
+
+  const router = useRouter();
+  const refreshData = () => router.replace(router.asPath);
+  useEffect(() => {
+    const interval = setInterval(refreshData, 60000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
