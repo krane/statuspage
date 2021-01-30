@@ -1,24 +1,11 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useRefreshProps } from "../hooks/useRefreshProps";
 import { KraneClient, Deployment } from "@krane/common";
 
 import Toggle from "../components/global/Toggle";
 import Alert from "../components/global/Alert";
 import DeploymentsList from "../components/DeploymentStatusList";
-
-const endpoint = process.env.KRANE_ENDPOINT;
-const token = process.env.KRANE_TOKEN;
-
-export async function getServerSideProps() {
-  try {
-    const client = new KraneClient(endpoint, token);
-    const deployments = await client.getDeployments();
-    return { props: { deployments } };
-  } catch (e) {
-    return { props: { deployments: [], error: e } };
-  }
-}
 
 type Props = {
   deployments: Deployment[];
@@ -26,17 +13,10 @@ type Props = {
 };
 
 export default function IndexPage({ deployments, error }: Props) {
+  useRefreshProps(60000);
   const [showInternalDeployments, setShowInternalDeployments] = useState(false);
   const internalDeployments = deployments.filter((d) => d.config.internal);
   const nonInternalDeployments = deployments.filter((d) => !d.config.internal);
-
-  const router = useRouter();
-  const refreshData = () => router.replace(router.asPath);
-  useEffect(() => {
-    const interval = setInterval(refreshData, 60000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <>
       <Head>
@@ -90,4 +70,17 @@ export default function IndexPage({ deployments, error }: Props) {
       </div>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const endpoint = process.env.KRANE_ENDPOINT;
+  const token = process.env.KRANE_TOKEN;
+
+  try {
+    const client = new KraneClient(endpoint, token);
+    const deployments = await client.getDeployments();
+    return { props: { deployments } };
+  } catch (e) {
+    return { props: { deployments: [], error: e } };
+  }
 }

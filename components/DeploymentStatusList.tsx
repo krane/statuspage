@@ -80,7 +80,7 @@ function ActivityMetadata({ job }: { job: Job }) {
       <div>
         {job.status.failure_count > 0 &&
           job.status.failures.map((f) => (
-            <div className="py-2 max-w-xs">
+            <div key={f.execution} className="py-2 max-w-xs">
               {f.execution}) {f.message}
             </div>
           ))}
