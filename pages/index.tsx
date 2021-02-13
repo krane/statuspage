@@ -6,6 +6,11 @@ import { KraneClient, Deployment } from "@krane/common";
 import Toggle from "../components/global/Toggle";
 import Alert from "../components/global/Alert";
 import DeploymentsList from "../components/DeploymentStatusList";
+import { StatusPageBanner } from "../components/StatusPageBanner";
+import {
+  getInternalDeployments,
+  getNonInternalDeployments,
+} from "../utils/krane";
 
 type Props = {
   deployments: Deployment[];
@@ -15,17 +20,17 @@ type Props = {
 export default function IndexPage({ deployments, error }: Props) {
   useRefreshProps(60000);
   const [showInternalDeployments, setShowInternalDeployments] = useState(false);
-  const internalDeployments = deployments.filter((d) => d.config.internal);
-  const nonInternalDeployments = deployments.filter((d) => !d.config.internal);
+  const internalDeployments = getInternalDeployments(deployments);
+  const nonInternalDeployments = getNonInternalDeployments(deployments);
   return (
     <>
       <Head>
-        <title>System status</title>
+        <title>Status page</title>
       </Head>
 
       <div className="container m-auto max-w-screen-sm">
-        <div className="text-center py-10">
-          <h1 className="text-lg font-medium">Status page</h1>
+        <div className="text-center py-4">
+          <StatusPageBanner deployments={nonInternalDeployments} />
 
           {error && (
             <div className="mt-4">
@@ -37,11 +42,22 @@ export default function IndexPage({ deployments, error }: Props) {
           )}
         </div>
 
-        <div className="mb-4 flex justify-end">
-          <Toggle
-            onClick={setShowInternalDeployments}
-            selected={showInternalDeployments}
-          />
+        <div className="flex justify-between">
+          <div className="mb-4 flex justify-end items-center space-x-3">
+            <div className="text-sm font-medium text-gray-800">
+              Active Deployments
+            </div>
+          </div>
+
+          <div className="mb-4 flex justify-end items-center space-x-3">
+            <div className="text-xs text-gray-400">
+              Show internal deployments
+            </div>
+            <Toggle
+              onClick={setShowInternalDeployments}
+              selected={showInternalDeployments}
+            />
+          </div>
         </div>
 
         {showInternalDeployments && internalDeployments.length == 0 && (
@@ -75,9 +91,9 @@ export default function IndexPage({ deployments, error }: Props) {
 export async function getServerSideProps() {
   const endpoint = process.env.KRANE_ENDPOINT;
   const token = process.env.KRANE_TOKEN;
+  const client = new KraneClient(endpoint, token);
 
   try {
-    const client = new KraneClient(endpoint, token);
     const deployments = await client.getDeployments();
     return { props: { deployments } };
   } catch (e) {

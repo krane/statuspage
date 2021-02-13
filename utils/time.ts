@@ -6,18 +6,18 @@ export const calculateTimeDiff = (epoch: number) => {
   const daysDiff = Math.floor(diffMs / 1000 / 60 / 60 / 60);
 
   if (minutesDiff == 0) {
-    return `${secondsDiff} seconds ago`;
+    return `${secondsDiff} second(s) ago`;
   }
 
   if (minutesDiff < 60) {
-    return `${minutesDiff} minutes ago`;
+    return `${minutesDiff} minute(s) ago`;
   }
 
   if (hoursDiff < 24) {
-    return `${hoursDiff} hours ago`;
+    return `${hoursDiff} hour(s) ago`;
   }
 
-  return `${daysDiff == 0 ? 1 : daysDiff} days ago`;
+  return `${daysDiff == 0 ? 1 : daysDiff} day(s) ago`;
 };
 
 export const epochToDate = (epoch: number) => {
