@@ -2,7 +2,7 @@
 
 A web UI for monitoring [Krane](https://www.krane.sh/) deployments
 
-![UI](images/ui-page.png)
+![UI](images/ui-preview.png)
 
 ## Installing
 
