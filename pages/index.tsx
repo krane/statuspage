@@ -10,7 +10,7 @@ import { StatusPageBanner } from "../components/StatusPageBanner";
 import {
   getInternalDeployments,
   getNonInternalDeployments,
-} from "../utils/krane";
+} from "../utils/helpers";
 
 type Props = {
   deployments: Deployment[];
@@ -94,6 +94,7 @@ export async function getServerSideProps() {
   const client = new KraneClient(endpoint, token);
 
   try {
+    console.log(`Fetching deployments from ${endpoint}...`);
     const deployments = await client.getDeployments();
     return { props: { deployments } };
   } catch (e) {

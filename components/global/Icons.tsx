@@ -15,13 +15,12 @@ export const KraneLogo = ({ height = "20", width = "20" }: IconProps) => {
   );
 };
 
-export const GreenCheckLogo = ({ height = "10", width = "10" }: IconProps) => {
+export const GreenCheckLogo = ({ height, width }: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={`w-${width} h-${height} text-green-400`}
       viewBox="0 0 20 20"
-      fill="currentColor"
+      className={`w-${width} h-${height} fill-current text-green-400`}
     >
       <path
         fillRule="evenodd"
@@ -34,9 +33,9 @@ export const GreenCheckLogo = ({ height = "10", width = "10" }: IconProps) => {
 
 export const RedCheckLogo = ({ height = "10", width = "10" }: IconProps) => {
   return (
-    <svg viewBox="0 0 15 15" className={`w-${width} h-${height}`}>
+    <svg viewBox="0 0 20 20" className={`w-${width} h-${height}`}>
       <g
-        id="Artboard"
+        xmlns="http://www.w3.org/2000/svg"
         stroke="none"
         strokeWidth="1"
         fill="none"
@@ -57,11 +56,10 @@ export const WarningLogo = ({ height = "10", width = "10" }: IconProps) => {
   return (
     <svg viewBox="0 0 15 15" className={`w-${width} h-${height}`}>
       <g
-        id="Artboard"
         stroke="none"
         strokeWidth="1"
-        fill="none"
         fillRule="evenodd"
+        xmlns="http://www.w3.org/2000/svg"
       >
         <g id="Group" fill="#FFAF36" fill-rule="nonzero">
           <path
@@ -77,15 +75,16 @@ export const WarningLogo = ({ height = "10", width = "10" }: IconProps) => {
 export const GlobeIcon = ({ height = "10", width = "10" }: IconProps) => {
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      className={`text-gray-500 w-${width} h-${height}`}
       stroke="currentColor"
+      className={`text-gray-400 w-${width} h-${height}`}
     >
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth="2"
+        strokeWidth={2}
         d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
       />
     </svg>

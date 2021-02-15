@@ -4,7 +4,7 @@ import { Deployment, Job } from "@krane/common";
 
 import { calculateTimeDiff } from "../utils/time";
 import { GlobeIcon, GreenCheckLogo, RedCheckLogo } from "./global/Icons";
-import { getLastExecutedJob, sortJobsByMostRecent } from "../utils/krane";
+import { getLastExecutedJob, sortJobsByMostRecent } from "../utils/helpers";
 import { useState } from "react";
 
 type Props = { deployments: Deployment[] };
@@ -30,23 +30,23 @@ function DeploymentListItem({ deployment }: { deployment: Deployment }) {
     <li className="px-6 py-4">
       <div className="flex flex-col mb-1">
         <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-1 w-full">
             {lastExecutedJob?.status.failure_count > 0 ? (
-              <RedCheckLogo width="4" height="4" />
+              <RedCheckLogo width="5" height="5" />
             ) : (
-              <GreenCheckLogo width="4" height="4" />
+              <GreenCheckLogo width="5" height="5" />
             )}
             <div className="font-md text-lg">{deployment.config.name}</div>
           </div>
 
-          <div>
+          <div className="items-center">
             <button
               type="button"
               onMouseEnter={() => setShowVisitOptions(true)}
               onMouseLeave={() => setShowVisitOptions(false)}
               className="items-center outline-none focus:outline-none"
             >
-              <GlobeIcon width="4" height="4" />
+              <GlobeIcon width="5" height="5" />
             </button>
             {showVisitOptions && (
               <span

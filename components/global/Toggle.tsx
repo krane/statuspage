@@ -6,7 +6,7 @@ type Props = {
   selected: boolean;
 };
 
-export default function Toggle({ onClick, selected }: Props) {
+export default function Toggle({ onClick, selected = false }: Props) {
   return (
     <div className="flex items-center">
       <span

@@ -7,7 +7,7 @@ import {
   getLastSuccesfullDeploymentRuns,
   getMostRecentTriggeredDeployment,
   hasAllGreenDeployments,
-} from "../utils/krane";
+} from "../utils/helpers";
 
 type Props = { deployments: Deployment[] };
 export const StatusPageBanner = ({ deployments }: Props) => {
@@ -19,9 +19,9 @@ export const StatusPageBanner = ({ deployments }: Props) => {
   return (
     <div className="flex p-6 my-4 rounded-md shadow space-x-4 items-start">
       {hasAllGreenDeployments(deployments) ? (
-        <GreenCheckLogo width="8" />
+        <GreenCheckLogo width="8" height="8" />
       ) : (
-        <WarningLogo width="8" />
+        <WarningLogo width="8" height="8" />
       )}
 
       <div className="space-y-1/2 text-left">
