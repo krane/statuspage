@@ -26,6 +26,7 @@ export default function IndexPage({ deployments, error }: Props) {
     <>
       <Head>
         <title>Status page</title>
+        <link rel="Krane icon" href="/favicon.ico" />
       </Head>
 
       <div className="container m-auto max-w-screen-sm">
