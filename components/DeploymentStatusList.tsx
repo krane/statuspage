@@ -95,45 +95,53 @@ function DeploymentListItem({ deployment }: { deployment: Deployment }) {
 function ActivityTimeline({ jobs }: { jobs: Job[] }) {
   return (
     <div className="flex h-8 space-x-0.5">
-      {jobs.map((job) =>
-        job.status.failure_count > 0 ? (
-          <Tooltip
-            key={job.id}
-            className="cursor-pointer"
-            position="bottom"
-            distance={-30}
-            html={<ActivityMetadata job={job} />}
-          >
+      {jobs.map((job) => (
+        <Tooltip
+          key={job.id}
+          className="cursor-pointer"
+          theme="light"
+          position="bottom"
+          distance={-35}
+          html={<ActivityMetadata job={job} />}
+        >
+          {job.status.failure_count > 0 ? (
             <TimelineItem onClick={() => console.log(job)} success={false} />
-          </Tooltip>
-        ) : (
-          <Tooltip
-            key={job.id}
-            className="cursor-pointer"
-            position="bottom"
-            distance={-30}
-            html={<ActivityMetadata job={job} />}
-          >
+          ) : (
             <TimelineItem onClick={() => console.log(job)} success={true} />
-          </Tooltip>
-        )
-      )}
+          )}
+        </Tooltip>
+      ))}
     </div>
   );
 }
 
 function ActivityMetadata({ job }: { job: Job }) {
   return (
-    <div className="text-left text-xs">
-      <div>{job.type.toLowerCase().replace("_", " ")}</div>
-      <div>{calculateTimeDiff(job.start_time_epoch)}</div>
+    <div className="text-left text-xs p-2 space-y-2">
       <div>
-        {job.status.failure_count > 0 &&
+        <div className="text-xs text-gray-700 font-bold">
+          {job.type.toUpperCase().replace("_", " ")}
+        </div>
+        <div className="text-gray-400">
+          Triggered {calculateTimeDiff(job.start_time_epoch)}
+        </div>
+      </div>
+
+      <div>
+        {job.status.failure_count > 0 ? (
           job.status.failures.map((f) => (
-            <div key={f.execution} className="py-2 max-w-xs">
-              {f.execution}) {f.message}
+            <div
+              key={f.execution}
+              className="max-w-xs rounded-sm bg-red-100 px-4 py-2 text-red-400 font-medium"
+            >
+              {f.message}
             </div>
-          ))}
+          ))
+        ) : (
+          <div className="rounded-sm bg-green-100 px-4 py-2 text-green-400 font-medium">
+            Completed with no errors
+          </div>
+        )}
       </div>
     </div>
   );
