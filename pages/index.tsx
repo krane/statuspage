@@ -28,7 +28,7 @@ export default function IndexPage({ endpoint, deployments, error }: Props) {
     <>
       <Head>
         <title>Status page</title>
-        <link rel="icon" href="/favicon/favicon.ico" />
+        <link rel="icon" href="/favicons/favicon.ico" />
       </Head>
 
       <div className="container flex m-auto max-w-screen-sm flex-col h-screen">
