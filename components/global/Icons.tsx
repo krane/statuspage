@@ -15,7 +15,7 @@ export const KraneLogo = ({ height = "20", width = "20" }: IconProps) => {
   );
 };
 
-export const GreenCheckLogo = ({ height, width }: IconProps) => {
+export const GreenCheckIcon = ({ height, width }: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +31,7 @@ export const GreenCheckLogo = ({ height, width }: IconProps) => {
   );
 };
 
-export const RedCheckLogo = ({ height = "10", width = "10" }: IconProps) => {
+export const RedCheckIcon = ({ height = "10", width = "10" }: IconProps) => {
   return (
     <svg viewBox="0 0 20 20" className={`w-${width} h-${height}`}>
       <g
@@ -52,7 +52,7 @@ export const RedCheckLogo = ({ height = "10", width = "10" }: IconProps) => {
   );
 };
 
-export const WarningLogo = ({ height = "10", width = "10" }: IconProps) => {
+export const WarningIcon = ({ height = "10", width = "10" }: IconProps) => {
   return (
     <svg viewBox="0 0 15 15" className={`w-${width} h-${height}`}>
       <g

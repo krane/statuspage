@@ -3,14 +3,14 @@ import { Tooltip } from "react-tippy";
 import { Deployment, Job } from "@krane/common";
 
 import { calculateTimeDiff } from "../utils/time";
-import { GlobeIcon, GreenCheckLogo, RedCheckLogo } from "./global/Icons";
+import { GlobeIcon, GreenCheckIcon, RedCheckIcon } from "./global/Icons";
 import { getLastExecutedJob, sortJobsByMostRecent } from "../utils/helpers";
 import { useState } from "react";
 
 type Props = { deployments: Deployment[] };
 export default function DeploymentsList({ deployments }: Props) {
   return (
-    <div className="shadow rounded-md">
+    <div className="shadow rounded-md bg-white">
       <ul className="divide-y divide-gray-200">
         {deployments.map((deployment) => (
           <DeploymentListItem
@@ -32,9 +32,9 @@ function DeploymentListItem({ deployment }: { deployment: Deployment }) {
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-1 w-full">
             {lastExecutedJob?.status.failure_count > 0 ? (
-              <RedCheckLogo width="5" height="5" />
+              <RedCheckIcon width="5" height="5" />
             ) : (
-              <GreenCheckLogo width="5" height="5" />
+              <GreenCheckIcon width="5" height="5" />
             )}
             <div className="font-md text-lg">{deployment.config.name}</div>
           </div>

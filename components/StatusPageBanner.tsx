@@ -1,5 +1,5 @@
 import { Deployment } from "@krane/common";
-import { GreenCheckLogo, WarningLogo } from "./global/Icons";
+import { GreenCheckIcon, WarningIcon } from "./global/Icons";
 
 import { calculateTimeDiff } from "../utils/time";
 import {
@@ -19,9 +19,9 @@ export const StatusPageBanner = ({ deployments }: Props) => {
   return (
     <div className="flex p-6 my-4 rounded-md shadow space-x-4 items-start">
       {hasAllGreenDeployments(deployments) ? (
-        <GreenCheckLogo width="8" height="8" />
+        <GreenCheckIcon width="8" height="8" />
       ) : (
-        <WarningLogo width="8" height="8" />
+        <WarningIcon width="8" height="8" />
       )}
 
       <div className="space-y-1/2 text-left">
