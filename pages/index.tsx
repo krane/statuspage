@@ -88,7 +88,8 @@ export default function IndexPage({ endpoint, deployments, error }: Props) {
             />
           )}
         </div>
-        <Footer endpoint={endpoint} />
+
+        <Footer />
       </div>
     </>
   );
