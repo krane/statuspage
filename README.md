@@ -1,8 +1,10 @@
-![UI-Banner](images/ui-banner.png)
+![UI-Banner](public/images/ui-banner.png)
 
 A web UI for monitoring [Krane](https://www.krane.sh/) deployments
 
-![UI](images/ui-page.png)
+[Demo Status Page](https://status.krane.dev)
+
+![UI](public/images/ui-page.png)
 
 ## Installing
 
