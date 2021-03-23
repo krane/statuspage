@@ -96,7 +96,7 @@ export async function getServerSideProps() {
   const client = new KraneClient(endpoint, token);
 
   try {
-    console.log(`[${Date.now()}] Fetching deployments from ${endpoint}...`);
+    console.log(`Fetching deployments from ${endpoint}...`);
     const deployments = await client.getDeployments();
     return { props: { deployments } };
   } catch (e) {

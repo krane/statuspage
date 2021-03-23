@@ -122,7 +122,7 @@ export const GithubIcon = ({ height = "5", width = "5" }: IconProps) => {
   );
 };
 
-export const TimeIcon = ({ height = "5", width = "5" }: IconProps) => {
+export const TimeIcon = ({ height = "15", width = "15" }: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -130,6 +130,8 @@ export const TimeIcon = ({ height = "5", width = "5" }: IconProps) => {
       viewBox="0 0 24 24"
       stroke="currentColor"
       className={`text-gray-400 w-${width} h-${height}`}
+      width={width}
+      height={height}
     >
       <path
         stroke-linecap="round"
