@@ -128,7 +128,7 @@ function ActivityMetadata({ job }: { job: Job }) {
           {job.type.toUpperCase().replace("_", " ")}
         </div>
         <div className="text-xs text-gray-400 flex">
-          <TimeIcon height="4" width="4" />
+          <TimeIcon />
           <span className="ml-1">
             Triggered {calculateTimeDiff(job.start_time_epoch)}
           </span>
