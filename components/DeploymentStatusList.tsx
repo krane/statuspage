@@ -3,7 +3,12 @@ import { Tooltip } from "react-tippy";
 import { Deployment, Job } from "@krane/common";
 
 import { calculateTimeDiff } from "../utils/time";
-import { GlobeIcon, GreenCheckIcon, RedCheckIcon } from "./global/Icons";
+import {
+  GlobeIcon,
+  GreenCheckIcon,
+  RedCheckIcon,
+  TimeIcon,
+} from "./global/Icons";
 import { getLastExecutedJob, sortJobsByMostRecent } from "../utils/helpers";
 import { useState } from "react";
 
@@ -36,7 +41,7 @@ function DeploymentListItem({ deployment }: { deployment: Deployment }) {
             ) : (
               <GreenCheckIcon width="5" height="5" />
             )}
-            <div className="font-md text-lg">{deployment.config.name}</div>
+            <div className="font-md text-xl">{deployment.config.name}</div>
           </div>
 
           <div className="items-center">
@@ -66,7 +71,7 @@ function DeploymentListItem({ deployment }: { deployment: Deployment }) {
                         key={alias}
                         href={`http://${alias}`}
                         target="_blank"
-                        className="block px-4 py-2 text-xs text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                         role="menuitem"
                       >
                         {alias}
@@ -79,7 +84,7 @@ function DeploymentListItem({ deployment }: { deployment: Deployment }) {
           </div>
         </div>
 
-        <div className="text-gray-400 text-xs">
+        <div className="text-gray-500 text-xs">
           Updated&nbsp;
           {calculateTimeDiff(lastExecutedJob?.start_time_epoch)}
         </div>
@@ -117,13 +122,16 @@ function ActivityTimeline({ jobs }: { jobs: Job[] }) {
 
 function ActivityMetadata({ job }: { job: Job }) {
   return (
-    <div className="text-left text-xs p-2 space-y-2">
-      <div>
-        <div className="text-xs text-gray-700 font-bold">
+    <div className="text-left p-2 space-y-2">
+      <div className="space-y-1">
+        <div className="text-gray-800 font-bold">
           {job.type.toUpperCase().replace("_", " ")}
         </div>
-        <div className="text-gray-400">
-          Triggered {calculateTimeDiff(job.start_time_epoch)}
+        <div className="text-xs text-gray-400 flex">
+          <TimeIcon height="4" width="4" />
+          <span className="ml-1">
+            Triggered {calculateTimeDiff(job.start_time_epoch)}
+          </span>
         </div>
       </div>
 
@@ -132,13 +140,13 @@ function ActivityMetadata({ job }: { job: Job }) {
           job.status.failures.map((failure) => (
             <div
               key={failure.execution}
-              className="max-w-xs rounded-sm bg-red-100 px-4 py-2 text-red-400 font-medium"
+              className="max-w-xs rounded-sm text-xs bg-red-100 px-4 py-2 text-red-400 font-medium"
             >
               {failure.message}
             </div>
           ))
         ) : (
-          <div className="rounded-sm bg-green-100 px-4 py-2 text-green-400 font-medium">
+          <div className="rounded-sm text-xs bg-green-100 px-4 py-2 text-green-400 font-medium">
             Completed with no errors
           </div>
         )}

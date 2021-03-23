@@ -29,7 +29,7 @@ export const StatusPageBanner = ({ deployments }: Props) => {
 
         {deployments && deployments.length > 0 && (
           <div className="space-y-1">
-            <div className="text-sm text-gray-500 mt-1">
+            <div className="text-md text-gray-600 mt-1">
               Updated&nbsp;
               <span className="font-bold">
                 {lastTriggeredDeployment.config.name}
@@ -43,7 +43,7 @@ export const StatusPageBanner = ({ deployments }: Props) => {
               {lastTriggeredDeploymentTimeDiff}
             </div>
 
-            <div className="flex text-xs text-gray-400">
+            <div className="flex text-sm text-gray-600">
               <div className="font-bold">
                 {getLastSuccesfullDeploymentRuns(deployments).length}/
                 {deployments.length}
