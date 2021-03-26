@@ -6,7 +6,7 @@ import { KraneClient, Deployment } from "@krane/common";
 import Toggle from "../components/global/Toggle";
 import Alert from "../components/global/Alert";
 import Header from "../components/global/Header";
-import DeploymentsList from "../components/DeploymentStatusList";
+import { DeploymentsList } from "../components/DeploymentList";
 import { StatusPageBanner } from "../components/StatusPageBanner";
 import {
   getInternalDeployments,
@@ -30,10 +30,10 @@ export default function IndexPage({ deployments, error }: Props) {
         <link rel="icon" href="/favicons/favicon.ico" />
       </Head>
 
-      <div className="container m-auto max-w-screen-md flex flex-col">
-        <Header />
+      <Header />
 
-        <div className="text-center mb-4">
+      <div className="m-auto max-w-screen-md flex flex-col">
+        <div className="text-center my-2">
           <StatusPageBanner deployments={nonInternalDeployments} />
 
           {error && (

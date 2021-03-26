@@ -1,19 +1,19 @@
 import clsx from "clsx";
+import { useState } from "react";
 import { Tooltip } from "react-tippy";
 import { Deployment, Job } from "@krane/common";
 
 import { calculateTimeDiff } from "../utils/time";
-import {
-  GlobeIcon,
-  GreenCheckIcon,
-  RedCheckIcon,
-  TimeIcon,
-} from "./global/Icons";
 import { getLastExecutedJob, sortJobsByMostRecent } from "../utils/helpers";
-import { useState } from "react";
+
+// Icon stuff
+import { FaCheckCircle } from "react-icons/fa";
+import { HiOutlineGlobeAlt } from "react-icons/hi";
+import { BiTimeFive } from "react-icons/bi";
+import { MdError } from "react-icons/md";
 
 type Props = { deployments: Deployment[] };
-export default function DeploymentsList({ deployments }: Props) {
+export function DeploymentsList({ deployments }: Props) {
   return (
     <div className="shadow rounded-md bg-white">
       <ul className="divide-y divide-gray-200">
@@ -37,51 +37,52 @@ function DeploymentListItem({ deployment }: { deployment: Deployment }) {
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-1 w-full">
             {lastExecutedJob?.status.failure_count > 0 ? (
-              <RedCheckIcon width="5" height="5" />
+              <MdError className="text-red-400 text-lg" />
             ) : (
-              <GreenCheckIcon width="5" height="5" />
+              <FaCheckCircle className="text-green-400" />
             )}
             <div className="font-md text-xl">{deployment.config.name}</div>
           </div>
 
-          <div className="items-center">
+          <div className="flex space-x-2">
             <button
               type="button"
               onMouseEnter={() => setShowVisitOptions(true)}
               onMouseLeave={() => setShowVisitOptions(false)}
               className="items-center outline-none focus:outline-none"
             >
-              <GlobeIcon width="5" height="5" />
+              <HiOutlineGlobeAlt className="text-gray-500 text-lg" />
             </button>
-            {showVisitOptions && (
-              <span
-                className="relative block"
-                onMouseEnter={() => setShowVisitOptions(true)}
-                onMouseLeave={() => setShowVisitOptions(false)}
-              >
-                <div className="absolute right-0 -top-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                  <div
-                    className="divide-y w-full"
-                    role="menu"
-                    aria-orientation="vertical"
-                    aria-labelledby="option-menu"
-                  >
-                    {deployment.config.alias.map((alias) => (
-                      <a
-                        key={alias}
-                        href={`http://${alias}`}
-                        target="_blank"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                        role="menuitem"
-                      >
-                        {alias}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </span>
-            )}
           </div>
+
+          {showVisitOptions && (
+            <span
+              className="relative block"
+              onMouseEnter={() => setShowVisitOptions(true)}
+              onMouseLeave={() => setShowVisitOptions(false)}
+            >
+              <div className="absolute right-0 top-3 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                <div
+                  className="divide-y w-full"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="option-menu"
+                >
+                  {deployment.config.alias.map((alias) => (
+                    <a
+                      key={alias}
+                      href={`http://${alias}`}
+                      target="_blank"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                      role="menuitem"
+                    >
+                      {alias}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </span>
+          )}
         </div>
 
         <div className="text-gray-500 text-xs">
@@ -128,7 +129,7 @@ function ActivityMetadata({ job }: { job: Job }) {
           {job.type.toUpperCase().replace("_", " ")}
         </div>
         <div className="text-xs text-gray-400 flex">
-          <TimeIcon />
+          <BiTimeFive className="text-gray-400 text-base" />
           <span className="ml-1">
             Triggered {calculateTimeDiff(job.start_time_epoch)}
           </span>
