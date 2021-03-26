@@ -29,7 +29,7 @@ export function JobListItem({ job }: { job: Job }) {
             {job.type == "RUN_DEPLOYMENT" && `Deploy ${job.deployment}`}
             {job.type == "RESTART_CONTAINERS" && `Restart ${job.deployment}`}
             {job.type == "STOP_CONTAINERS" && `Stop ${job.deployment} `}
-            {job.type == "DELETE_DEPLOYMENT" && `Delere ${job.deployment}`}
+            {job.type == "DELETE_DEPLOYMENT" && `Delete ${job.deployment}`}
           </p>
         </div>
       </div>
