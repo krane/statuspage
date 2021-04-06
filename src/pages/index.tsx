@@ -32,7 +32,7 @@ export default function IndexPage({ deployments, error }: Props) {
 
       <Header />
 
-      <div className="m-auto max-w-screen-md flex flex-col">
+      <div className="m-auto px-8 md:px-0 max-w-screen-md flex flex-col">
         <div className="text-center my-2">
           <StatusPageBanner deployments={nonInternalDeployments} />
 
