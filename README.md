@@ -6,28 +6,28 @@
 
 ## Installing
 
-You can run the Krane UI and point it to any Krane instance using the below command
+You can run the Krane status page pointing to any Krane instance using the below command
 
 Official Docker Image: https://hub.docker.com/repository/docker/biensupernice/krane-ui
 
 ```
-docker run -d --name krane-ui \
-    -e KRANE_ENDPOINT=http://example.com \
+docker run -d --name krane-statupage \
+    -e KRANE_ENDPOINT=https://krane.example.com \
     -e KRANE_TOKEN=changeme \
     -p 3000:3000 biensupernice/krane-ui
 ```
 
 ## Deploying
 
-You can deploy the Krane UI using Krane since its packaged up into a docker image.
+You can deploy the Krane status page using Krane since its packaged up into a Docker image.
 
-An example [deployment configuration](https://docs.krane.sh/#/docs/deployment) can be seen below
+An example [deployment configuration](https://docs.krane.sh/#/docs/deployment) is shown below
 
 `deployment.json`
 
 ```json
 {
-  "name": "krane-ui",
+  "name": "krane-statupage",
   "image": "biensupernice/krane-ui",
   "secure": true,
   "alias": ["status.example.com"],
