@@ -1,8 +1,6 @@
-![UI-Banner](public/images/ui-banner.png)
+<img src="https://github.com/krane/krane/blob/main/docs/assets/krane-wordmark.png?raw=true" width="350">
 
-A web UI for monitoring [Krane](https://www.krane.sh/) deployments
-
-[Demo Status Page](https://status.krane.dev)
+> The status page for [Krane](https://docs.krane.sh) deployments
 
 ![UI](public/images/ui-page.png)
 
@@ -23,7 +21,7 @@ docker run -d --name krane-ui \
 
 You can deploy the Krane UI using Krane since its packaged up into a docker image.
 
-An example [deployment configuration](https://www.krane.sh/#/docs/deployment) can be seen below
+An example [deployment configuration](https://docs.krane.sh/#/docs/deployment) can be seen below
 
 `deployment.json`
 
@@ -34,7 +32,7 @@ An example [deployment configuration](https://www.krane.sh/#/docs/deployment) ca
   "secure": true,
   "alias": ["status.example.com"],
   "secrets": {
-    "KRANE_ENDPOINT": "@KRANE_ENDPOINT",
+    "KRANE_ENDPOINT": "https://krane.example.com",
     "KRANE_TOKEN": "@KRANE_TOKEN"
   }
 }
