@@ -25,7 +25,7 @@ An example [deployment configuration](https://docs.krane.sh/#/docs/deployment) i
 
 ```json
 {
-  "name": "krane-statupage",
+  "name": "krane-statuspage",
   "image": "krane/statuspage",
   "secure": true,
   "alias": ["status.example.com"],
