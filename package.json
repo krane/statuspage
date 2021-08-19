@@ -1,6 +1,6 @@
 {
-  "name": "ui",
-  "description": "web UI for monitoring Krane deployments",
+  "name": "statuspage",
+  "description": "The status page for Krane deployments",
   "version": "1.0.0",
   "private": false,
   "scripts": {
